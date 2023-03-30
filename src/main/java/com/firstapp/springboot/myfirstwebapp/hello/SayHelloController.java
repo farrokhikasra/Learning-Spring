@@ -9,13 +9,13 @@ public class SayHelloController {
 
     @RequestMapping("say-hello")
     @ResponseBody
-    public String sayHello(){
+    public String sayHello() {
         return "Hello what are you learning today?";
     }
 
     @RequestMapping("say-hello-html")
     @ResponseBody
-    public String sayHelloHtml(){
+    public String sayHelloHtml() {
         StringBuffer sb = new StringBuffer();
         sb.append("<html>");
         sb.append("<head>");
@@ -25,12 +25,11 @@ public class SayHelloController {
         sb.append("My first HTML page with body");
         sb.append("</body>");
         sb.append("</html>");
-
         return sb.toString();
     }
 
     @RequestMapping("say-hello-jsp")
-    public String sayHelloJsp(){
+    public String sayHelloJsp() {
         return "sayHello";
     }
 }

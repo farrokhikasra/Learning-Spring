@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 @Service
 public class TodoService {
@@ -15,16 +16,17 @@ public class TodoService {
     private static int todosount = 0;
 
     static {
-        todos.add(new Todo(++todosount, "in28minutes", "Learn AWS",
+        todos.add(new Todo(++todosount, "kasra", "Learn AWS",
                 LocalDate.now().plusYears(1), false));
-        todos.add(new Todo(++todosount, "in28minutes", "Learn DevOps",
+        todos.add(new Todo(++todosount, "kasra", "Learn DevOps",
                 LocalDate.now().plusYears(2), false));
-        todos.add(new Todo(++todosount, "in28minutes", "Learn Full Stack Development",
+        todos.add(new Todo(++todosount, "sarah", "Learn Full Stack Development",
                 LocalDate.now().plusYears(3), false));
     }
 
     public static List<Todo> findByUsername(String username) {
-        return todos;
+        Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
+        return todos.stream().filter(predicate).toList();
     }
 
     public void addTodo(String username, String description, LocalDate targetDate, boolean done) {
